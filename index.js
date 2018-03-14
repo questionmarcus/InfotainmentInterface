@@ -7,6 +7,8 @@ var notification = {
 
 var notifNoise = new Audio('ahhAmazing.wav')
 
+var stationary = true;
+
 function startTime() {
   var today = new Date();
   var h = today.getHours();
@@ -30,19 +32,26 @@ function checkTime(i) {
 
 $(document).ready(function(){
   $('#FB').click(function(){
-    $('#FB0 h1').text((notification.facebook > 0) ? "You have "+notification.facebook+" notifications!" : "You have no notifications")
-    if (notification.facebook > 0) {
-      $('#FB0 .w3-display-middle img').show()
+    if (stationary) {
+      FB()
+      $('#FB0 h1').text((notification.facebook > 0) ? "You have "+notification.facebook+" notifications!" : "You have no notifications")
+      if (notification.facebook > 0) {
+        $('#FB0 .w3-display-middle img').show()
+      } else {
+        $('#FB0 .w3-display-middle img').hide()
+      }
+      $('#main').fadeOut(500);
+      $('#FB0').fadeIn(500);
     } else {
-      $('#FB0 .w3-display-middle img').hide()
+      $('#warning-pane').fadeIn(500).delay(1000).fadeOut(500);
     }
-    $('#main').fadeOut(500);
-    $('#FB0').fadeIn(500);
   });
 });
 
 $(document).ready(function(){
   $('#TW').click(function(){
+    if (stationary) {
+    TW()
     $('#TW0 h1').text((notification.twitter > 0) ? "You have "+notification.twitter+" notifications!" : "You have no notifications")
     if (notification.twitter > 0) {
       $('#TW0 .w3-display-middle img').show()
@@ -51,12 +60,16 @@ $(document).ready(function(){
     }
     $('#main').hide();
     $('#TW0').fadeIn(500);
-
+  } else {
+    $('#warning-pane').fadeIn(500).delay(1000).fadeOut(500);
+  }
   });
 });
 
 $(document).ready(function(){
   $('#INST').click(function(){
+    if (stationary) {
+    INST()
     $('#INST0 h1').text((notification.instagram > 0) ? "You have "+notification.instagram+" notifications!" : "You have no notifications")
     if (notification.instagram > 0) {
       $('#INST0 .w3-display-middle img').show()
@@ -65,11 +78,16 @@ $(document).ready(function(){
     }
     $('#main').fadeOut(500);
     $('#INST0').fadeIn(500);
+  } else {
+    $('#warning-pane').fadeIn(500).delay(1000).fadeOut(500);
+  }
   });
 });
 
 $(document).ready(function(){
   $('#WU').click(function(){
+    if (stationary) {
+    WU();
     $('#WU0 h1').text((notification.whatsapp > 0) ? "You have "+notification.whatsapp+" notifications!" : "You have no notifications")
     if (notification.whatsapp > 0) {
       $('#WU0 .w3-display-middle img').show()
@@ -78,6 +96,9 @@ $(document).ready(function(){
     }
     $('#main').fadeOut(500);
     $('#WU0').fadeIn(500);
+  } else {
+    $('#warning-pane').fadeIn(500).delay(1000).fadeOut(500);
+  }
   });
 });
 
@@ -113,6 +134,9 @@ $('body').keypress(function(event) {
       break;
     case 113: // q keypress
       clearNotifications()
+      break;
+     case 32: // space bar
+      toggleStationary()
       break;
   }
 })
@@ -186,21 +210,85 @@ function updateNotifications() {
 
 function incrementFB() {
   notification.facebook++;
+  FB()
+  $('#FB0 h1').text((notification.facebook > 0) ? "You have "+notification.facebook+" notifications!" : "You have no notifications")
+  if (notification.facebook > 0) {
+    $('#FB0 .w3-display-middle img').show()
+  } else {
+    $('#FB0 .w3-display-middle img').hide()
+  }
+  $('#main').hide()
+  $('#FB0').fadeIn(500).delay(2000).fadeOut(500, function() {
+    $('#main').fadeIn(500);
+    $('#FB0').fadeOut(500);
+    $('#TW0').fadeOut(500);
+    $('#WU0').fadeOut(500);
+    $('#INST0').fadeOut(500);
+    main()
+  });
   updateNotifications();
 }
 
 function incrementTW() {
   notification.twitter++;
+  TW()
+  $('#TW0 h1').text((notification.twitter > 0) ? "You have "+notification.twitter+" notifications!" : "You have no notifications")
+  if (notification.twitter > 0) {
+    $('#TW0 .w3-display-middle img').show()
+  } else {
+    $('#TW0 .w3-display-middle img').hide()
+  }
+  $('#main').hide()
+  $('#TW0').fadeIn(500).delay(2000).fadeOut(500, function() {
+    $('#main').fadeIn(500);
+    $('#FB0').fadeOut(500);
+    $('#TW0').fadeOut(500);
+    $('#WU0').fadeOut(500);
+    $('#INST0').fadeOut(500);
+    main()
+  });
   updateNotifications();
 }
 
 function incrementINST() {
   notification.instagram++;
+  INST()
+  $('#INST0 h1').text((notification.instagram > 0) ? "You have "+notification.instagram+" notifications!" : "You have no notifications")
+  if (notification.instagram > 0) {
+    $('#INST0 .w3-display-middle img').show()
+  } else {
+    $('#INST0 .w3-display-middle img').hide()
+  }
+  $('#main').hide()
+  $('#INST0').fadeIn(500).delay(2000).fadeOut(500, function() {
+    $('#main').fadeIn(500);
+    $('#FB0').fadeOut(500);
+    $('#TW0').fadeOut(500);
+    $('#WU0').fadeOut(500);
+    $('#INST0').fadeOut(500);
+    main()
+  });
   updateNotifications();
 }
 
 function incrementWA() {
   notification.whatsapp++;
+  WU()
+  $('#WU0 h1').text((notification.whatsapp > 0) ? "You have "+notification.whatsapp+" notifications!" : "You have no notifications")
+  if (notification.whatsapp > 0) {
+    $('#WU0 .w3-display-middle img').show()
+  } else {
+    $('#WU0 .w3-display-middle img').hide()
+  }
+  $('#main').hide()
+  $('#WU0').fadeIn(500).delay(2000).fadeOut(500, function() {
+    $('#main').fadeIn(500);
+    $('#FB0').fadeOut(500);
+    $('#TW0').fadeOut(500);
+    $('#WU0').fadeOut(500);
+    $('#INST0').fadeOut(500);
+    main()
+  });
   updateNotifications();
 }
 
@@ -210,4 +298,14 @@ function clearNotifications() {
   notification.instagram = 0;
   notification.whatsapp = 0
   updateNotifications();
+}
+
+function toggleStationary() {
+  if (stationary) {
+    stationary = false;
+    console.log("car is now moving")
+  } else {
+    stationary = true;
+    console.log("car is now stopped")
+  }
 }
