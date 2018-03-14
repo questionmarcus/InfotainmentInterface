@@ -93,7 +93,6 @@ $(document).ready(function(){
 });
 
 $('body').keypress(function(event) {
-
   console.log(event.which)
   switch (event.which) {
     case 102: // f key
@@ -117,6 +116,23 @@ $('body').keypress(function(event) {
       break;
   }
 })
+
+function main(){
+  document.body.style.background = '#212121';
+}
+
+
+function FB(){
+  document.body.style.backgroundColor = '#3b5998';
+}
+
+function TW(){
+  document.body.style.backgroundColor = '#55acee';
+}
+
+function WU(){
+  document.body.style.backgroundColor = '#4FCE5D';
+}
 
 function main(){
   document.body.style.background = '#212121';
