@@ -46,6 +46,7 @@ svg {
   line-height: 50px;
   padding: auto;
   background: #F44336;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.16)
 }
 
 .return {
@@ -53,6 +54,10 @@ svg {
   margin: 100px;
   background: none;
   border: none;
+}
+
+.w3-display-middle {
+  text-align: center;
 }
 
 #Date{-block
@@ -86,7 +91,7 @@ svg {
   background-color: #607D8B
 }
 
-#INST {
+#INST {w3-display-middle
   background: #f09433;
   background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
   background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);

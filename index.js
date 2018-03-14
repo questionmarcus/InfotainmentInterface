@@ -29,6 +29,7 @@ function checkTime(i) {
 $(document).ready(function(){
   $('#FB').click(function(){
     $('#FB0 h1').text((notification.facebook > 0) ? "You have "+notification.facebook+" notifications!" : "You have no notifications")
+    $('#FB0 .w3-display-middle').append((notification.facebook > 0) ? "<img src=\"steeringwheel-howTo.svg\">" : "<div></div>")
     $('#main').fadeOut(500);
     $('#FB0').fadeIn(500);
   });
@@ -37,6 +38,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('#TW').click(function(){
     $('#TW0 h1').text((notification.twitter > 0) ? "You have "+notification.twitter+" notifications!" : "You have no notifications")
+    $('#TW0 .w3-display-middle').append((notification.twitter > 0) ? "<img src=\"steeringwheel-howTo.svg\">" : "<div></div>")
     $('#main').hide();
     $('#TW0').fadeIn(500);
 
@@ -46,6 +48,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('#INST').click(function(){
     $('#INST0 h1').text((notification.instagram > 0) ? "You have "+notification.instagram+" notifications!" : "You have no notifications")
+    $('#INST0 .w3-display-middle').append((notification.instagram > 0) ? "<img src=\"steeringwheel-howTo.svg\">" : "<div></div>")
     $('#main').fadeOut(500);
     $('#INST0').fadeIn(500);
   });
@@ -54,6 +57,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $('#WU').click(function(){
     $('#WU0 h1').text((notification.whatsapp > 0) ? "You have "+notification.whatsapp+" notifications!" : "You have no notifications")
+    $('#WU0 .w3-display-middle').append((notification.whatsapp > 0) ? "<img src=\"steeringwheel-howTo.svg\">" : "<div></div>")
     $('#main').fadeOut(500);
     $('#WU0').fadeIn(500);
   });
