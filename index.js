@@ -5,6 +5,8 @@ var notification = {
   "whatsapp":0
 }
 
+var notifNoise = new Audio('ahhAmazing.wav')
+
 function startTime() {
   var today = new Date();
   var h = today.getHours();
@@ -75,19 +77,24 @@ $(document).ready(function(){
 });
 
 $('body').keypress(function(event) {
+
   console.log(event.which)
   switch (event.which) {
     case 102: // f key
       incrementFB();
+      notifNoise.play();
       break;
     case 116: // t key
       incrementTW();
+      notifNoise.play();
       break;
     case 105: // i key
       incrementINST()
+      notifNoise.play();
       break;
     case 119: //w key
       incrementWA();
+      notifNoise.play();
       break;
     case 113: // q keypress
       clearNotifications()
@@ -120,40 +127,28 @@ function INST(){
 
 function updateNotifications() {
   if (notification.facebook > 0) {
-    if (notification.facebook === 1) {
-      $('#FB').prepend("<div class=\"notification\">"+notification.facebook+"</div>")
-    } else {
-      $('#FB .notification').text(notification.facebook);
-    }
+    $('#FB .notification').show();
+    $('#FB .notification').text(notification.facebook);
   } else {
-    $('#FB .notification').remove()
+    $('#FB .notification').hide()
   }
   if (notification.twitter > 0) {
-    if (notification.twitter === 1) {
-      $('#TW').prepend("<div class=\"notification\">"+notification.twitter+"</div>")
-    } else {
-      $('#TW .notification').text(notification.twitter);
-    }
+    $('#TW .notification').show();
+    $('#TW .notification').text(notification.twitter);
   } else {
-    $('#TW .notification').remove()
+    $('#TW .notification').hide()
   }
   if (notification.instagram > 0) {
-    if (notification.instagram === 1) {
-      $('#INST').prepend("<div class=\"notification\">"+notification.instagram+"</div>")
-    } else {
-      $('#INST .notification').text(notification.instagram);
-    }
+    $('#INST .notification').show()
+    $('#INST .notification').text(notification.instagram);
   } else {
-    $('#INST .notification').remove()
+    $('#INST .notification').hide()
   }
   if (notification.whatsapp > 0) {
-    if (notification.whatsapp === 1) {
-      $('#WU').prepend("<div class=\"notification\">"+notification.whatsapp+"</div>")
-    } else {
+      $('#WU .notification').show()
       $('#WU .notification').text(notification.whatsapp);
-    }
   } else {
-    $('#WU .notification').remove()
+    $('#WU .notification').hide()
   }
 }
 
