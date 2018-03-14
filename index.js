@@ -28,6 +28,7 @@ function checkTime(i) {
 
 $(document).ready(function(){
   $('#FB').click(function(){
+    $('#FB0 h1').text((notification.facebook > 0) ? "You have "+notification.facebook+" notifications!" : "You have no notifications")
     $('#main').fadeOut(500);
     $('#FB0').fadeIn(500);
   });
@@ -35,6 +36,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('#TW').click(function(){
+    $('#TW0 h1').text((notification.twitter > 0) ? "You have "+notification.twitter+" notifications!" : "You have no notifications")
     $('#main').hide();
     $('#TW0').fadeIn(500);
 
@@ -43,6 +45,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('#INST').click(function(){
+    $('#INST0 h1').text((notification.instagram > 0) ? "You have "+notification.instagram+" notifications!" : "You have no notifications")
     $('#main').fadeOut(500);
     $('#INST0').fadeIn(500);
   });
@@ -50,6 +53,7 @@ $(document).ready(function(){
 
 $(document).ready(function(){
   $('#WU').click(function(){
+    $('#WU0 h1').text((notification.whatsapp > 0) ? "You have "+notification.whatsapp+" notifications!" : "You have no notifications")
     $('#main').fadeOut(500);
     $('#WU0').fadeIn(500);
   });
@@ -66,6 +70,26 @@ $(document).ready(function(){
   });
 });
 
+$('body').keypress(function(event) {
+  console.log(event.which)
+  switch (event.which) {
+    case 102: // f key
+      incrementFB();
+      break;
+    case 116: // t key
+      incrementTW();
+      break;
+    case 105: // i key
+      incrementINST()
+      break;
+    case 119: //w key
+      incrementWA();
+      break;
+    case 113: // q keypress
+      clearNotifications()
+      break;
+  }
+})
 
 function main(){
   document.body.style.background = '#212121';
@@ -88,4 +112,71 @@ function INST(){
   document.body.style.background = '-moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)'
   document.body.style.background = '-webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)'
   document.body.style.background = 'linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)'
+}
+
+function updateNotifications() {
+  if (notification.facebook > 0) {
+    if (notification.facebook === 1) {
+      $('#FB').prepend("<div class=\"notification\">"+notification.facebook+"</div>")
+    } else {
+      $('#FB .notification').text(notification.facebook);
+    }
+  } else {
+    $('#FB .notification').remove()
+  }
+  if (notification.twitter > 0) {
+    if (notification.twitter === 1) {
+      $('#TW').prepend("<div class=\"notification\">"+notification.twitter+"</div>")
+    } else {
+      $('#TW .notification').text(notification.twitter);
+    }
+  } else {
+    $('#TW .notification').remove()
+  }
+  if (notification.instagram > 0) {
+    if (notification.instagram === 1) {
+      $('#INST').prepend("<div class=\"notification\">"+notification.instagram+"</div>")
+    } else {
+      $('#INST .notification').text(notification.instagram);
+    }
+  } else {
+    $('#INST .notification').remove()
+  }
+  if (notification.whatsapp > 0) {
+    if (notification.whatsapp === 1) {
+      $('#WU').prepend("<div class=\"notification\">"+notification.whatsapp+"</div>")
+    } else {
+      $('#WU .notification').text(notification.whatsapp);
+    }
+  } else {
+    $('#WU .notification').remove()
+  }
+}
+
+function incrementFB() {
+  notification.facebook++;
+  updateNotifications();
+}
+
+function incrementTW() {
+  notification.twitter++;
+  updateNotifications();
+}
+
+function incrementINST() {
+  notification.instagram++;
+  updateNotifications();
+}
+
+function incrementWA() {
+  notification.whatsapp++;
+  updateNotifications();
+}
+
+function clearNotifications() {
+  notification.facebook = 0;
+  notification.twitter = 0;
+  notification.instagram = 0;
+  notification.whatsapp = 0
+  updateNotifications();
 }
