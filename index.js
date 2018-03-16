@@ -221,9 +221,9 @@ function incrementFB() {
   FB()
   $('#FB0 h1').text((notification.facebook > 0) ? "You have "+notification.facebook+" notifications!" : "You have no notifications")
   if (notification.facebook > 0) {
-    $('#FB0 .w3-display-middle .steering-wheel').show()
-  } else {
-    $('#FB0 .w3-display-middle .steering-wheel').hide()
+    $('#FB0 .social-icon').show();
+    $('#FB0 .w3-display-middle img').show()
+    $('#FB0 .notification-pic').hide()
   }
   $('#main').hide()
   $('#FB0').fadeIn(500).delay(2000).fadeOut(500, function() {
@@ -263,9 +263,9 @@ function incrementINST() {
   INST()
   $('#INST0 h1').text((notification.instagram > 0) ? "You have "+notification.instagram+" notifications!" : "You have no notifications")
   if (notification.instagram > 0) {
-    $('#INST0 .w3-display-middle .steering-wheel').show()
-  } else {
-    $('#INST0 .w3-display-middle .steering-wheel').hide()
+    $('#INST0 .social-icon').show();
+    $('#INST0 .w3-display-middle img').show()
+    $('#INST0 .notification-pic').hide()
   }
   $('#main').hide()
   $('#INST0').fadeIn(500).delay(2000).fadeOut(500, function() {
